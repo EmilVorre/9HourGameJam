@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuKeyListener : MonoBehaviour
+public class MainMenuKeyListenerCopy : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class MainMenuKeyListener : MonoBehaviour
     void Update()
     {
         if(Input.GetKey(KeyCode.Space)){
-            SceneManager.LoadScene("Something");
+            SceneManager.LoadScene("Game");
         }
     }
 }
