@@ -37,11 +37,20 @@ public class UtilManager : MonoBehaviour
     {
         if (cellActivities.TryGetValue(cellPos, out bool active) == false)
         {
-
+            Interact(cellPos, sprite, isGhost);
         }
         if (active == false)
         {
-
+            Interact(cellPos, sprite, isGhost);
         }
+        else
+        {
+            Debug.Log("Already working");
+        }
+    }
+
+    private void Interact(Vector3Int cellPos, Sprite sprite, bool isGhost)
+    {
+
     }
 }
