@@ -23,12 +23,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogError("Rigidbody2D is NULL!");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnEnable()
     {
         _playerActions.Player.Enable();
@@ -45,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             _moveInput = _playerActions.Player.Ghost_Movement.ReadValue<Vector2>();
         else
             _moveInput = _playerActions.Player.Ghoul_Movement.ReadValue<Vector2>();
-
+        Debug.Log(_moveInput);
         _rbody.velocity = _moveInput * _speed;
     }
 }
