@@ -18,7 +18,6 @@ public class CustomerSpawner : MonoBehaviour
         int groupSize = GetGroupSize();
         if (!TryFindAvailableTable(groupSize, out CustomerTable newBookedTable))
         {
-            // A little scuffed since we're essentially bruteforcing until we get a small enough group size.
             print("No available table");
             return;
         }
@@ -42,30 +41,30 @@ public class CustomerSpawner : MonoBehaviour
                 continue;
             }
 
-            SpawnCustomerGameObject(GetSpawnLocation(), table.Chairs[i]);
+            // Spawn customer directly at chair position
+            SpawnCustomerGameObject(table.Chairs[i].position, table.Chairs[i]);
             table.OccupiedChairs[i] = true;
             groupSize -= 1;
         }
     }
 
-    private Vector3 GetSpawnLocation() => Vector3.zero;
-
     private int GetGroupSize() => Random.Range(groupSizeMin, groupSizeMax + 1);
 
-    private void SpawnCustomerGameObject(Vector3 position, Transform chairTarget)
+    private void SpawnCustomerGameObject(Vector3 chairPosition, Transform chairTarget)
     {
-        var newCustomer = Instantiate(CustomerPrefab, position, Quaternion.identity);
-        CustomerAI agent = newCustomer.GetComponent<CustomerAI>();
-        agent.GotoTable(chairTarget);
+        var newCustomer = Instantiate(CustomerPrefab, chairPosition, Quaternion.identity);
+        Vector3 position = newCustomer.transform.position;
+        position.z = -1;
+        newCustomer.transform.position = position;
+        // CustomerAI agent = newCustomer.GetComponent<CustomerAI>();
+        // agent.GotoTable(chairTarget);
     }
 
     public bool TryFindAvailableTable(int lookingForSeats, out CustomerTable availableTable)
     {
-        print("Try");
         foreach (var table in tables)
         {
-            int emptySeats = table.OccupiedChairs.Count(p => p == false);
-            print(emptySeats);
+            int emptySeats = table.OccupiedChairs.Count(p => !p);
             if (emptySeats >= lookingForSeats)
             {
                 availableTable = table;
@@ -82,7 +81,6 @@ public class CustomerSpawner : MonoBehaviour
         SpawnCustomer();
     }
 
-    // Update is called once per frame
     void Update()
     {
         spawnTimer += Time.deltaTime;
