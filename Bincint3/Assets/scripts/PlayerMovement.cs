@@ -88,8 +88,6 @@ public class PlayerMovement : MonoBehaviour
     {        
         var (cellPos, tileData, valid) = tileSystemManager.GetNeighboringUtilInDirection(transform.position, newestDirection);
 
-        Debug.Log(tileData.sprite);
-
         if (valid == false)
         {
             return;

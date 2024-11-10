@@ -9,6 +9,8 @@ public class UtilManager : MonoBehaviour
 
     public List<SpriteUtilMapping> utilMappings = new();
 
+    public Sprite table;
+
     [Serializable]
     public struct SpriteUtilMapping
     {
@@ -38,6 +40,22 @@ public class UtilManager : MonoBehaviour
 
     public void TryInteract(Vector3Int cellPos, Sprite sprite, PlayerMovement player)
     {
+        if (sprite == table && player.holdingSpriteRenderer.sprite == utilMappings[^1].whateverIsGivenBack)
+        {
+            if (CustomerSpawner.customers.Count > 0)
+            {
+                Destroy(CustomerSpawner.customers[0]);
+                CustomerSpawner.customers.RemoveAt(0);
+            }
+
+            if (CustomerSpawner.customers.Count > 0)
+            {
+                Destroy(CustomerSpawner.customers[0]);
+                CustomerSpawner.customers.RemoveAt(0);
+            }
+            player.holdingSpriteRenderer.sprite = null;
+        }
+
         Debug.Log($"{sprite} {cellPos}");
 
         foreach (var mapping in utilMappings){

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class CustomerSpawner : MonoBehaviour
 
     [SerializeField]
     private float spawnTimer = 0;
+
+    public static List<GameObject> customers = new();
 
     public void SpawnCustomer()
     {
@@ -60,6 +63,7 @@ public class CustomerSpawner : MonoBehaviour
         newCustomer.transform.position = position;
         // CustomerAI agent = newCustomer.GetComponent<CustomerAI>();
         // agent.GotoTable(chairTarget);
+        customers.Add(newCustomer);
     }
 
     public bool TryFindAvailableTable(int lookingForSeats, out CustomerTable availableTable)
