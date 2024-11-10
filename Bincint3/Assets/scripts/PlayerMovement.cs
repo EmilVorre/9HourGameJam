@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rbody;
     private Vector2 _moveInput;
 
+    Direction newestDirection = Direction.left;
 
     void Awake()
     {
@@ -36,10 +38,42 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (_isGhost)
+        {
             _moveInput = _playerActions.Player.Ghost_Movement.ReadValue<Vector2>();
+        }
         else
+        {
             _moveInput = _playerActions.Player.Ghoul_Movement.ReadValue<Vector2>();
-        Debug.Log(_moveInput);
+        }
+
         _rbody.velocity = _moveInput * _speed;
+
+        SetDirection();
+    }
+
+    private void SetDirection()
+    {
+        float deadZone = 0.2f;
+        if (_moveInput.x > deadZone)
+        {
+            newestDirection = Direction.right;
+        }
+        else if (_moveInput.x < deadZone)
+        {
+            newestDirection = Direction.left;
+        }
+        else if (_moveInput.y  > deadZone)
+        {
+            newestDirection = Direction.up;
+        }
+        else if (_moveInput.y  < deadZone)
+        {
+            newestDirection = Direction.down;
+        }
+    }
+
+    private void Update()
+    {
+
     }
 }

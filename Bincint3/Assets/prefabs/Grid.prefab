@@ -1328,6 +1328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561718258020466444}
   - component: {fileID: 6512386495161291445}
+  - component: {fileID: 9052168114537988979}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -1366,6 +1367,23 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &9052168114537988979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810290973921696251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b885cbf2be3e54db2bd1cea2920307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemaps:
+  - {fileID: 3335059768793485584}
+  - {fileID: 9141958080120417065}
+  - {fileID: 200172377691698282}
+  - {fileID: 2941307822313576970}
 --- !u!1 &3915673163124663583
 GameObject:
   m_ObjectHideFlags: 0
