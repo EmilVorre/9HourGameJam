@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class CustomerAI : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Transform target;
 
     private void Awake()
     {
@@ -12,8 +14,13 @@ public class CustomerAI : MonoBehaviour
         agent.updateUpAxis = false;
     }
 
-    public void GotoTable(Vector3 position)
+    private void Update()
     {
-        agent.SetDestination(position);
+        agent.SetDestination(target.position);
+    }
+
+    public void GotoTable(Transform newTarget)
+    {
+        target = newTarget;
     }
 }
