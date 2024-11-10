@@ -34,12 +34,12 @@
                 },
                 {
                     "name": "Ghoul_Movement",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "b80357f4-1471-4c62-9ec4-993bbe18351b",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -166,30 +166,8 @@
                 },
                 {
                     "name": "",
-                    "id": "3d76afdf-032b-4f93-b85c-1bab5aee686b",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ghoul_Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d225048d-286d-48ba-a387-deb5c0d38d04",
                     "path": "<Keyboard>/enter",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ghost_Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e84dd466-291d-47aa-832a-818446edeb01",
-                    "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

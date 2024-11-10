@@ -7,12 +7,14 @@ public class UtilManager : MonoBehaviour
 {
     public static UtilManager Instance;
 
-    Dictionary<Vector3Int, bool> cellActivities = new();
+    public List<SpriteUtilMapping> utilMappings = new();
 
+    [Serializable]
     public struct SpriteUtilMapping
     {
         public Sprite sprite;
-        public GameObject util;
+        public Sprite requriedToHold;
+        public Sprite whateverIsGivenBack;
     }
 
     private void Awake()
@@ -33,24 +35,17 @@ public class UtilManager : MonoBehaviour
         }
     }
 
-    public void TryInteract(Vector3Int cellPos, Sprite sprite, bool isGhost)
+    public void TryInteract(Vector3Int cellPos, Sprite sprite, PlayerMovement player)
     {
-        if (cellActivities.TryGetValue(cellPos, out bool active) == false)
-        {
-            Interact(cellPos, sprite, isGhost);
-        }
-        if (active == false)
-        {
-            Interact(cellPos, sprite, isGhost);
-        }
-        else
-        {
-            Debug.Log("Already working");
-        }
-    }
+        Debug.Log($"{sprite} {cellPos}");
 
-    private void Interact(Vector3Int cellPos, Sprite sprite, bool isGhost)
-    {
+        foreach (var mapping in utilMappings){
+            if (mapping.sprite == sprite 
+            && mapping.requriedToHold == player.holdingSpriteRenderer.sprite){
+                player.holdingSpriteRenderer.sprite = mapping.whateverIsGivenBack;
+                return;
+            }
 
+        }
     }
 }

@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rbody;
     private Vector2 _moveInput;
 
+    public SpriteRenderer holdingSpriteRenderer;
+
     Direction newestDirection = Direction.left;
 
     TileSystemManager tileSystemManager;
@@ -67,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         {
             newestDirection = Direction.right;
         }
-        else if (_moveInput.x < deadZone)
+        else if (_moveInput.x < -deadZone)
         {
             newestDirection = Direction.left;
         }
@@ -75,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         {
             newestDirection = Direction.up;
         }
-        else if (_moveInput.y  < deadZone)
+        else if (_moveInput.y  < -deadZone)
         {
             newestDirection = Direction.down;
         }
@@ -84,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {        
         var (cellPos, tileData, valid) = tileSystemManager.GetNeighboringUtilInDirection(transform.position, newestDirection);
+
+        Debug.Log(tileData.sprite);
 
         if (valid == false)
         {
@@ -96,7 +100,8 @@ public class PlayerMovement : MonoBehaviour
         if (_isGhost && ghostInteracted
             || _isGhost == false && ghoulInteracted)
         {
-            utilManager.TryInteract(cellPos, tileData.sprite, _isGhost);
+            utilManager.TryInteract(cellPos, tileData.sprite, this);
         }
+
     }
 }
