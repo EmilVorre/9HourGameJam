@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour
 {
-    public GameObject CustomerPrefab;
+    public GameObject[] CustomerPrefabs;
     public CustomerTable[] tables;
     public int groupSizeMin = 1;
     public int groupSizeMax = 2;
@@ -50,9 +50,11 @@ public class CustomerSpawner : MonoBehaviour
 
     private int GetGroupSize() => Random.Range(groupSizeMin, groupSizeMax + 1);
 
+    private GameObject GetRandomCustomerPrefab() => CustomerPrefabs[Random.Range(0, CustomerPrefabs.Length)];
+
     private void SpawnCustomerGameObject(Vector3 chairPosition, Transform chairTarget)
     {
-        var newCustomer = Instantiate(CustomerPrefab, chairPosition, Quaternion.identity);
+        var newCustomer = Instantiate(GetRandomCustomerPrefab(), chairPosition, Quaternion.identity);
         Vector3 position = newCustomer.transform.position;
         position.z = -1;
         newCustomer.transform.position = position;

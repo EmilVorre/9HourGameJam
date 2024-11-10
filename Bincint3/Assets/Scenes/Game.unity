@@ -1131,6 +1131,34 @@ PrefabInstance:
       propertyPath: canSpawnExcessCustomer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4443199176820634960, guid: 9efcab7600997664d8e6655e3cfcfbbe, type: 3}
+      propertyPath: CustomerPrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443199176820634960, guid: 9efcab7600997664d8e6655e3cfcfbbe, type: 3}
+      propertyPath: CustomerPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 7159719928341034858, guid: d0e8d28ef19a86544a97dceec3da29eb, type: 3}
+    - target: {fileID: 4443199176820634960, guid: 9efcab7600997664d8e6655e3cfcfbbe, type: 3}
+      propertyPath: CustomerPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 428717202981233028, guid: 5e9a690ae4dc5dd4da0b990c1932e859, type: 3}
+    - target: {fileID: 4443199176820634960, guid: 9efcab7600997664d8e6655e3cfcfbbe, type: 3}
+      propertyPath: CustomerPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 2075702910843811597, guid: 59a17d3afa6a74949b93cbe2db4085c7, type: 3}
+    - target: {fileID: 4443199176820634960, guid: 9efcab7600997664d8e6655e3cfcfbbe, type: 3}
+      propertyPath: CustomerPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 4097630917007281105, guid: 540be378f94a69b42b9fbcbf82fab671, type: 3}
+    - target: {fileID: 4443199176820634960, guid: 9efcab7600997664d8e6655e3cfcfbbe, type: 3}
+      propertyPath: CustomerPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 1997400662621287531, guid: fa78f108901375346928c654483741f6, type: 3}
+    - target: {fileID: 4443199176820634960, guid: 9efcab7600997664d8e6655e3cfcfbbe, type: 3}
+      propertyPath: CustomerPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 7696567008477444504, guid: 1f9012dc96393ba4389f5ff9b8ded9ec, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
