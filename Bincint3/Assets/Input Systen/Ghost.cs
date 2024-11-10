@@ -37,7 +37,16 @@ public partial class @Ghost: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interaction"",
+                    ""name"": ""Ghost_Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""00fad7d1-556f-4df1-8b49-1336e614fa68"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ghoul_Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""15af5bce-ba23-46e6-9c59-2e969d6d04ad"",
                     ""expectedControlType"": """",
@@ -168,34 +177,12 @@ public partial class @Ghost: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""596664dc-a6db-44c4-81be-eb6af1c29101"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interaction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e5e8542f-48ec-4f6f-a23d-a0ead83a213f"",
-                    ""path"": ""<Keyboard>/backspace"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interaction"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""f0743409-bb93-4928-8b3e-88e0dbf11725"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interaction"",
+                    ""action"": ""Ghoul_Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -206,7 +193,29 @@ public partial class @Ghost: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interaction"",
+                    ""action"": ""Ghoul_Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d225048d-286d-48ba-a387-deb5c0d38d04"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ghost_Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e84dd466-291d-47aa-832a-818446edeb01"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ghost_Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -273,7 +282,8 @@ public partial class @Ghost: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Ghost_Movement = m_Player.FindAction("Ghost_Movement", throwIfNotFound: true);
-        m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
+        m_Player_Ghost_Interaction = m_Player.FindAction("Ghost_Interaction", throwIfNotFound: true);
+        m_Player_Ghoul_Interaction = m_Player.FindAction("Ghoul_Interaction", throwIfNotFound: true);
         m_Player_Ghoul_Movement = m_Player.FindAction("Ghoul_Movement", throwIfNotFound: true);
     }
 
@@ -342,14 +352,16 @@ public partial class @Ghost: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Ghost_Movement;
-    private readonly InputAction m_Player_Interaction;
+    private readonly InputAction m_Player_Ghost_Interaction;
+    private readonly InputAction m_Player_Ghoul_Interaction;
     private readonly InputAction m_Player_Ghoul_Movement;
     public struct PlayerActions
     {
         private @Ghost m_Wrapper;
         public PlayerActions(@Ghost wrapper) { m_Wrapper = wrapper; }
         public InputAction @Ghost_Movement => m_Wrapper.m_Player_Ghost_Movement;
-        public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
+        public InputAction @Ghost_Interaction => m_Wrapper.m_Player_Ghost_Interaction;
+        public InputAction @Ghoul_Interaction => m_Wrapper.m_Player_Ghoul_Interaction;
         public InputAction @Ghoul_Movement => m_Wrapper.m_Player_Ghoul_Movement;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -363,9 +375,12 @@ public partial class @Ghost: IInputActionCollection2, IDisposable
             @Ghost_Movement.started += instance.OnGhost_Movement;
             @Ghost_Movement.performed += instance.OnGhost_Movement;
             @Ghost_Movement.canceled += instance.OnGhost_Movement;
-            @Interaction.started += instance.OnInteraction;
-            @Interaction.performed += instance.OnInteraction;
-            @Interaction.canceled += instance.OnInteraction;
+            @Ghost_Interaction.started += instance.OnGhost_Interaction;
+            @Ghost_Interaction.performed += instance.OnGhost_Interaction;
+            @Ghost_Interaction.canceled += instance.OnGhost_Interaction;
+            @Ghoul_Interaction.started += instance.OnGhoul_Interaction;
+            @Ghoul_Interaction.performed += instance.OnGhoul_Interaction;
+            @Ghoul_Interaction.canceled += instance.OnGhoul_Interaction;
             @Ghoul_Movement.started += instance.OnGhoul_Movement;
             @Ghoul_Movement.performed += instance.OnGhoul_Movement;
             @Ghoul_Movement.canceled += instance.OnGhoul_Movement;
@@ -376,9 +391,12 @@ public partial class @Ghost: IInputActionCollection2, IDisposable
             @Ghost_Movement.started -= instance.OnGhost_Movement;
             @Ghost_Movement.performed -= instance.OnGhost_Movement;
             @Ghost_Movement.canceled -= instance.OnGhost_Movement;
-            @Interaction.started -= instance.OnInteraction;
-            @Interaction.performed -= instance.OnInteraction;
-            @Interaction.canceled -= instance.OnInteraction;
+            @Ghost_Interaction.started -= instance.OnGhost_Interaction;
+            @Ghost_Interaction.performed -= instance.OnGhost_Interaction;
+            @Ghost_Interaction.canceled -= instance.OnGhost_Interaction;
+            @Ghoul_Interaction.started -= instance.OnGhoul_Interaction;
+            @Ghoul_Interaction.performed -= instance.OnGhoul_Interaction;
+            @Ghoul_Interaction.canceled -= instance.OnGhoul_Interaction;
             @Ghoul_Movement.started -= instance.OnGhoul_Movement;
             @Ghoul_Movement.performed -= instance.OnGhoul_Movement;
             @Ghoul_Movement.canceled -= instance.OnGhoul_Movement;
@@ -402,7 +420,8 @@ public partial class @Ghost: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnGhost_Movement(InputAction.CallbackContext context);
-        void OnInteraction(InputAction.CallbackContext context);
+        void OnGhost_Interaction(InputAction.CallbackContext context);
+        void OnGhoul_Interaction(InputAction.CallbackContext context);
         void OnGhoul_Movement(InputAction.CallbackContext context);
     }
 }
