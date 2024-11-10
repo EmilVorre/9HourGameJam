@@ -729,6 +729,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 1851146187834455470, guid: 6e9103504d89a9944bb86d961b2e60eb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194803086360055489, guid: 6e9103504d89a9944bb86d961b2e60eb, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 9052168114537988979, guid: 6e9103504d89a9944bb86d961b2e60eb, type: 3}
       propertyPath: floor
       value: 
