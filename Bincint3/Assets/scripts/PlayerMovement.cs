@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
 
     Direction newestDirection = Direction.left;
 
+    TileSystemManager tileSystemManager;
+    UtilManager utilManager;
+
     void Awake()
     {
         _playerActions = new Ghost();
@@ -33,6 +36,12 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         _playerActions.Player.Disable();
+    }
+
+    private void Start()
+    {
+        tileSystemManager = TileSystemManager.Instance;
+        utilManager = UtilManager.Instance;
     }
 
     private void FixedUpdate()
@@ -73,7 +82,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update()
-    {
+    {        
+        var (cellPos, tileData, valid) = tileSystemManager.GetNeighboringUtilInDirection(transform.position, newestDirection);
 
+        if (valid == false)
+        {
+            return;
+        }
+
+        bool ghostInteracted = _playerActions.Player.Ghost_Interaction.WasPressedThisFrame();
+        bool ghoulInteracted = _playerActions.Player.Ghoul_Interaction.WasPressedThisFrame();
+
+        if (_isGhost && ghostInteracted
+            || _isGhost == false && ghoulInteracted)
+        {
+            utilManager.TryInteract(cellPos, tileData.sprite, _isGhost);
+        }
     }
 }

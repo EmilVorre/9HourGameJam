@@ -15,7 +15,16 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interaction",
+                    "name": "Ghost_Interaction",
+                    "type": "Button",
+                    "id": "00fad7d1-556f-4df1-8b49-1336e614fa68",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ghoul_Interaction",
                     "type": "Button",
                     "id": "15af5bce-ba23-46e6-9c59-2e969d6d04ad",
                     "expectedControlType": "",
@@ -146,34 +155,12 @@
                 },
                 {
                     "name": "",
-                    "id": "596664dc-a6db-44c4-81be-eb6af1c29101",
-                    "path": "<Keyboard>/enter",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e5e8542f-48ec-4f6f-a23d-a0ead83a213f",
-                    "path": "<Keyboard>/backspace",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f0743409-bb93-4928-8b3e-88e0dbf11725",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interaction",
+                    "action": "Ghoul_Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -184,7 +171,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interaction",
+                    "action": "Ghoul_Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d225048d-286d-48ba-a387-deb5c0d38d04",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ghost_Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e84dd466-291d-47aa-832a-818446edeb01",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ghost_Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

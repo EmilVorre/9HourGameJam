@@ -9,9 +9,10 @@ public class TileSystemManager : MonoBehaviour
 {
     public static TileSystemManager Instance;
 
-    [SerializeField] private List<Tilemap> tilemaps;
-
-    public List<Tilemap> Tilemaps => new(tilemaps);
+    [SerializeField] private Tilemap walls;
+    [SerializeField] private Tilemap floor;
+    [SerializeField] private Tilemap utils;
+    [SerializeField] private Tilemap chairs;
 
     private void Awake()
     {
@@ -31,48 +32,33 @@ public class TileSystemManager : MonoBehaviour
         }
     }
 
-    public List<TileBase> GetTiles(Vector2 position)
+    public (Vector3Int, TileData, bool) GetNeighboringUtilInDirection(Vector2 position, Direction direction)
     {
-        List<TileBase> tiles = new();
-        foreach (Tilemap tilemap in tilemaps)
+        Vector3Int cellPos = utils.WorldToCell(position);
+        switch (direction)
         {
-            Vector3Int cellPos = tilemap.WorldToCell(position);
-            TileBase tile = tilemap.GetTile(cellPos);
-            if (tile != null) 
-            {
-                tiles.Add(tile);
-            }
+            case Direction.up:
+                cellPos.y += 1;
+                break;
+            case Direction.down:
+                cellPos.y -= 1;
+                break;
+            case Direction.left:
+                cellPos.x -= 1;
+                break;
+            case Direction.right:
+                cellPos.x += 1;
+                break;
         }
-        return tiles;
-    }
 
-    public List<TileBase> GetNeighboringTilesInDirection(Vector2 position, Direction direction)
-    {
-        List<TileBase> tiles = new();
-        foreach (Tilemap tilemap in tilemaps)
+        bool valid = false;
+        TileBase tile = utils.GetTile(cellPos);
+        TileData tileData = new();
+        if (tile != null)
         {
-            Vector3Int cellPos = tilemap.WorldToCell(position);
-            switch (direction)
-            {
-                case Direction.up:
-                    cellPos.y += 1;
-                    break;
-                case Direction.down:
-                    cellPos.y -= 1;
-                    break;
-                case Direction.left:
-                    cellPos.x -= 1;
-                    break;
-                case Direction.right:
-                    cellPos.x += 1;
-                    break;
-            }
-            TileBase tile = tilemap.GetTile(cellPos);
-            if (tile != null)
-            {
-                tiles.Add(tile);
-            }
+            valid = true;            
+            tile.GetTileData(cellPos, utils, ref tileData);            
         }
-        return tiles;
+        return (cellPos, tileData, valid);
     }
 }
