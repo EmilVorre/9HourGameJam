@@ -15,8 +15,7 @@ public class MainMenuKeyListener : MonoBehaviour
     void Update()
     {
         if(Input.GetKey(KeyCode.Space)){
-            System.Console.WriteLine("Hi");
-            //SceneManager.LoadScene()
+            SceneManager.LoadScene("Game");
         }
     }
 }
