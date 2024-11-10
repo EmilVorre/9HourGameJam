@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _moveInput;
 
     public SpriteRenderer holdingSpriteRenderer;
+    public AudioSource audioSource;
 
     Direction newestDirection = Direction.left;
 

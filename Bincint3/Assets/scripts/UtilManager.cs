@@ -15,6 +15,7 @@ public class UtilManager : MonoBehaviour
         public Sprite sprite;
         public Sprite requriedToHold;
         public Sprite whateverIsGivenBack;
+        public AudioClip sound;
     }
 
     private void Awake()
@@ -41,11 +42,11 @@ public class UtilManager : MonoBehaviour
 
         foreach (var mapping in utilMappings){
             if (mapping.sprite == sprite 
-            && mapping.requriedToHold == player.holdingSpriteRenderer.sprite){
+            && mapping.requriedToHold == player.holdingSpriteRenderer.sprite) {
+                player.audioSource.PlayOneShot(mapping.sound, 4);
                 player.holdingSpriteRenderer.sprite = mapping.whateverIsGivenBack;
                 return;
             }
-
         }
     }
 }
